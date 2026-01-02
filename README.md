@@ -1,0 +1,1 @@
+# bibel-leseplan-j-nner2026

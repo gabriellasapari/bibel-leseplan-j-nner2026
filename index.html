@@ -659,6 +659,7 @@ function render() {
   let doneCount = 0;
 
   // cek apakah hari ini adalah Januar 2026
+const today = new Date();
 const isJan2026 =
   today.getFullYear() === 2026 && today.getMonth() === 0;
 const todayDay = isJan2026 ? today.getDate() : null;
@@ -796,6 +797,32 @@ function isMobile() {
 
 // Mapping singkatan di Plan -> Buch-Code YouVersion
 const youvBookMap = {
+  // Perjanjian Lama
+  "1Mo": "GEN",   // Genesis
+  "2Mo": "EXO",   // Exodus
+  "Hes": "EZK",
+  "Dan": "DAN",
+  "Hos": "HOS",
+  "Joel": "JOL",
+  "Amos": "AMO",
+  "Obadja": "OBA",
+  "Jona": "JON",
+  "Micha": "MIC",
+  "Nahum": "NAH",
+  "Habakuk": "HAB",
+  "Zefanja": "ZEP",
+  "Haggai": "HAG",
+  "Sach": "ZEC",
+  "Maleachi": "MAL",
+
+  // Perjanjian Baru
+  "Mt": "MAT",    // Matius
+  "Hebr": "HEB",
+  "Jak": "JAS",
+  "Judas": "JUD",
+  "Offb": "REV"
+};
+   
   "Hes": "EZK",      // Hesekiel
   "Dan": "DAN",
   "Hos": "HOS",
@@ -961,13 +988,13 @@ if (journalDaySelect) {
     journalDaySelect.appendChild(opt);
   });
 
-  // pilih default: heute, kalau Des 2025
-  const t = new Date();
-  if (t.getFullYear() === 2025 && t.getMonth() === 11) {
-    const dd = t.getDate();
-    const opt = [...journalDaySelect.options].find(o => Number(o.value) === dd);
-    if (opt) journalDaySelect.value = String(dd);
-  }
+  // pilih default: heute, kalau Januar 2026
+const t = new Date();
+if (t.getFullYear() === 2026 && t.getMonth() === 0) {
+  const dd = t.getDate();
+  const opt = [...journalDaySelect.options].find(o => Number(o.value) === dd);
+  if (opt) journalDaySelect.value = String(dd);
+}
 }
 
 function loadJournalForDay(day) {

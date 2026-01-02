@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<title>31 Tage mit Jesus – Bibelleseplan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<style>
+
+/* ---------------------------------------------------
+   DARK LUXE (BLACK + GOLD) UI
+--------------------------------------------------- */
+
+:root {
+  --bg: #0c0c0c;
+  --card-bg: #141414;
+  --text: #e8e8e8;
+  --muted: #9c9c9c;
+  --gold: #d4af37;
+  --gold-soft: #a98b2c;
+  --border: #2a2a2a;
+  --radius: 14px;
+}
+
+/* DARK MODE OVERRIDE */
+body[data-theme="light"] {
+  --bg: #f8f5e9;
+  --card-bg: #fffdf8;
+  --text: #2c2415;
+  --muted: #6a6047;
+  --gold: #b68a2c;
+  --border: #e2d3b8;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------------------------------------------------
+   PAGE WRAPPER
+--------------------------------------------------- */
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
+
+/* ---------------------------------------------------
+   HEADER
+--------------------------------------------------- */
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.header-btn {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.header-btn:hover {
+  background: var(--gold);
+  color: black;
+  box-shadow: 0 0 12px rgba(212,175,55,0.6);
+}
+
+/* ---------------------------------------------------
+   TITLE BLOCK
+--------------------------------------------------- */
+
+h1 {
+  margin: 12px 0 6px;
+  font-size: 32px;
+  color: var(--gold);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.intro-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  line-height: 1.5rem;
+  margin-top: 16px;
+  box-shadow: 0 0 22px rgba(212,175,55,0.05);
+}
+
+/* ---------------------------------------------------
+   NAVIGATION (TABS)
+--------------------------------------------------- */
+
+.main-nav {
+  margin-top: 22px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-tab {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.25s;
+  font-size: 14px;
+}
+
+.nav-tab:hover {
+  background: var(--gold);
+  color: black;
+}
+
+.nav-tab.is-active {
+  background: var(--gold);
+  color: black;
+  box-shadow: 0 0 12px rgba(212,175,55,0.6);
+}
+
+/* ---------------------------------------------------
+   TAB SECTIONS
+--------------------------------------------------- */
+
+.tab-section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-section.active {
+  display: block;
+}
+
+/* ---------------------------------------------------
+   DAY LIST
+--------------------------------------------------- */
+
+.layout {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
+}
+
+@media(max-width: 850px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: var(--radius);
+}
+
+.day-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.day-card {
+  display: flex;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: #111;
+  border: 1px solid #222;
+  transition: 0.2s;
+}
+
+.day-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(212,175,55,0.15);
+}
+
+.day-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: black;
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.day-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.day-ref {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* BUTTON "done" */
+.btn-small {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-small.is-done {
+  background: var(--gold);
+  color: black;
+}
+
+.reset-link {
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------
+   PROGRESS BAR
+--------------------------------------------------- */
+
+.progress-bar {
+  height: 12px;
+  background: #333;
+  border-radius: 999px;
+  border: 1px solid #555;
+  margin-top: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold), #f0d98a);
+  border-radius: 999px;
+  transition: width 0.35s ease-out;
+}
+   
+.bible-note {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+   
+/* ---------------------------------------------------
+   ABOUT & JOURNAL
+--------------------------------------------------- */
+
+.about-card,
+.journal-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.journal-textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #111;
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* SAVE BUTTON */
+.journal-save-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+}
+
+/* MUSIC SELECT */
+.music-select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: #111;
+  color: var(--gold);
+}
+
+/* ---------------------------------------------------
+   ANIMATION
+--------------------------------------------------- */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------
+   LEVEL 3: TODAY BADGE + FOCUS MODE + JOURNAL CONTROLS
+--------------------------------------------------- */
+
+/* Hari "heute" */
+.day-card.today {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(212,175,55,0.35);
+  position: relative;
+}
+
+.today-badge {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(212,175,55,0.18);
+  border: 1px solid rgba(212,175,55,0.6);
+  color: var(--gold);
+}
+
+/* Morgens / Abends layout */
+.day-ref-row {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 13px;
+}
+
+.day-ref-label {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.4);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+   .ref-link-text {
+  background: none;
+  border: none;
+  padding: 0 0 0 4px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.ref-link-text:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+/* Focus Overlay */
+.focus-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;              /* ⬅ default: tidak kelihatan */
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+   .ref-link-btn {
+  margin-left: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(212,175,55,0.6);
+  background: transparent;
+  color: var(--gold);
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ref-link-btn:hover {
+  background: rgba(212,175,55,0.18);
+  box-shadow: 0 0 8px rgba(212,175,55,0.4);
+}
+
+.focus-overlay.is-open {      /* ⬅ saat aktif */
+  display: flex;
+}
+
+.focus-dialog {
+  background: #111;
+  border-radius: 18px;
+  padding: 20px 22px;
+  width: min(90vw, 480px);
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 30px rgba(212,175,55,0.5);
+}
+
+.focus-close {
+  float: right;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Journal controls */
+.journal-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.journal-controls label {
+  font-size: 13px;
+}
+
+.journal-controls select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #111;
+  color: var(--text);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER BUTTONS -->
+  <div class="header-actions">
+    <button id="lang-toggle" class="header-btn">ID</button>
+    <select id="music-select" class="music-select">
+  <option value="ambient">Ambient Worship</option>
+</select> 
+
+    <!-- Play / Pause Musik -->
+  <button id="music-play" class="header-btn">▶</button>
+
+    <button id="theme-toggle" class="header-btn">☀</button>
+  </div>
+
+  <h1>31 Tage mit Jesus</h1>
+  <p class="subtitle">Bibelleseplan – Januar 2026</p>
+
+  <div class="intro-card">
+  Nimm dir jeden Tag <strong>10–20 Minuten</strong> zum Lesen, Nachdenken und Beten. Zeige deine Treue zu Jesus Christus, 
+  indem du Sein Wort jeden Tag liest.
+</div>
+
+  <!-- NAVIGATION -->
+  <nav class="main-nav">
+    <button class="nav-tab is-active" data-tab="lesenplan">📖 Leseplan</button>
+    <button class="nav-tab" data-tab="about">👤 Über mich</button>
+    <button class="nav-tab" data-tab="journal">📝 Journal</button>
+  </nav>
+
+  <!-- -------------------------------
+       TAB: LESEPLAN
+  -------------------------------- -->
+    <div id="tab-lesenplan" class="tab-section active">
+    <div class="layout">
+      <!-- Left -->
+      <section class="card">
+        <h2>Lesetag auswählen</h2>
+        <div class="day-list" id="dayList"></div>
+      </section>
+
+      <!-- Right -->
+      <aside class="card">
+        <h2>Dein Fortschritt</h2>
+        <p id="progressText">0 von 31 Tagen abgeschlossen (0%).</p>
+        <div class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+         <p class="bible-note">
+  Für den Bibeltext benutzen wir die 
+  <a href="https://www.bible.com/app" target="_blank" rel="noopener noreferrer">
+    YouVersion Bible App
+  </a> 
+  (Lutherbibel 2017).
+</p>
+         
+      </aside>
+    </div>
+       </div>
+   
+      <!-- -------------------------------
+       TAB: ABOUT
+  -------------------------------- -->
+  <div id="tab-about" class="tab-section">
+    <div class="about-card">
+      <h2 style="color:var(--gold)">Über mich</h2>
+
+      <p>
+        Ich bin Gabriella und lebe in Österreich. Ursprünglich komme ich
+        aus Westpapua in Indonesien und bin eine Nachfolgerin Jesu Christi.
+        Ich komme aus einer Familie mit einem starken Glauben an den Herrn
+        Jesus, und dieser Glaube prägt mein Leben seit meiner Kindheit.
+      </p>
+
+      <p>
+        Alle Bibelstellen in diesem Plan orientieren sich an dem offiziellen
+        einjährigen Gideons-Bibelleseplan, den ich persönlich verwende.
+      </p>
+
+      <p>
+        Wenn du Fragen hast oder einfach dein Zeugnis teilen möchtest,
+        freue ich mich über eine Nachricht auf Instagram @gabriellasapari
+        oder per Mail an
+        <a href="mailto:gabriellaasw94@gmail.com">gabriellaasw94@gmail.com</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- -------------------------------
+       TAB: JOURNAL
+  -------------------------------- -->
+    <div id="tab-journal" class="tab-section">
+    <div class="journal-card">
+      <h2 style="color:var(--gold)">Journal &amp; Gebet</h2>
+
+      <div class="journal-controls">
+        <label for="journal-day">Tag:</label>
+        <select id="journal-day"></select>
+      </div>
+
+      <textarea
+        id="journal-text"
+        class="journal-textarea"
+        placeholder="Was hat dich heute besonders angesprochen? Was möchtest du vor Gott aussprechen?"
+      ></textarea>
+
+      <button id="journal-save" class="journal-save-btn">Speichern</button>
+      <p id="journal-status" style="font-size:12px;color:var(--muted);margin-top:6px;"></p>
+    </div>
+  </div>
+
+    <!-- FOCUS OVERLAY (LEVEL 3) -->
+  <div id="focusOverlay" class="focus-overlay">
+    <div class="focus-dialog">
+      <button id="focusClose" class="focus-close">&times;</button>
+      <p id="focusDate" style="font-size:12px;color:var(--muted);margin-bottom:4px;"></p>
+      <h2 id="focusTitle" style="margin-top:0;color:var(--gold)"></h2>
+      <p id="focusMorning"></p>
+      <p id="focusEvening"></p>
+    </div>
+  </div>
+
+<section style="background:var(--card);padding:15px 20px;border-radius:12px;
+                margin-top:30px;font-size:13px;color:var(--muted);line-height:1.6;">
+    <h3 style="margin-top:0;margin-bottom:8px;font-size:15px;color:var(--accent);">
+        Datenschutz &amp; Privatsphäre
+    </h3>
+    <p>
+        Dein Fortschritt und deine Journaleinträge werden nur lokal in deinem Browser
+        gespeichert. Sie werden nicht auf einem Server gespeichert und sind für niemanden
+        sichtbar – auch nicht für mich als Erstellerin dieser Seite. Wenn du den Browserverlauf oder die Websitedaten löschst, gehen deine gespeicherten
+        Einträge verloren.
+    </p>
+</section>
+       
+  <footer style="text-align:center;margin-top:30px;font-size:12px;color:var(--muted)">
+    Erstellt mit Liebe von Gabriella
+  </footer>
+
+</div>
+
+<!-- ---------------------------------------------------
+     MUSIC SOURCES
+--------------------------------------------------- -->
+<audio id="player" preload="auto"></audio>
+
+<script>
+
+/* ---------------------------------------------------
+   31-DAY READING PLAN (JANUAR 2026)
+--------------------------------------------------- */
+
+const plan = [
+  { day: 1,  morning: "1Mo 1–2",   evening: "Mt 1" },
+  { day: 2,  morning: "1Mo 3–5",   evening: "Mt 2" },
+  { day: 3,  morning: "1Mo 6–8",   evening: "Mt 3" },
+  { day: 4,  morning: "1Mo 9–11",  evening: "Mt 4" },
+  { day: 5,  morning: "1Mo 12–14", evening: "Mt 5,1–26" },
+  { day: 6,  morning: "1Mo 15–17", evening: "Mt 5,27–48" },
+  { day: 7,  morning: "1Mo 18–19", evening: "Mt 6" },
+  { day: 8,  morning: "1Mo 20–22", evening: "Mt 7" },
+  { day: 9,  morning: "1Mo 23–24", evening: "Mt 8" },
+  { day:10,  morning: "1Mo 25–26", evening: "Mt 9,1–17" },
+  { day:11,  morning: "1Mo 27–28", evening: "Mt 9,18–38" },
+  { day:12,  morning: "1Mo 29–30", evening: "Mt 10,1–23" },
+  { day:13,  morning: "1Mo 31–32", evening: "Mt 10,24–42" },
+  { day:14,  morning: "1Mo 33–35", evening: "Mt 11" },
+  { day:15,  morning: "1Mo 36–37", evening: "Mt 12,1–21" },
+  { day:16,  morning: "1Mo 38–40", evening: "Mt 12,22–50" },
+  { day:17,  morning: "1Mo 41",    evening: "Mt 13,1–32" },
+  { day:18,  morning: "1Mo 42–43", evening: "Mt 13,33–58" },
+  { day:19,  morning: "1Mo 44–45", evening: "Mt 14,1–21" },
+  { day:20,  morning: "1Mo 46–48", evening: "Mt 14,22–36" },
+  { day:21,  morning: "1Mo 49–50", evening: "Mt 15,1–20" },
+  { day:22,  morning: "2Mo 1–3",   evening: "Mt 15,21–39" },
+  { day:23,  morning: "2Mo 4–6",   evening: "Mt 16" },
+  { day:24,  morning: "2Mo 7–8",   evening: "Mt 17" },
+  { day:25,  morning: "2Mo 9–10",  evening: "Mt 18,1–20" },
+  { day:26,  morning: "2Mo 11–12", evening: "Mt 18,21–35" },
+  { day:27,  morning: "2Mo 13–15", evening: "Mt 19,1–15" },
+  { day:28,  morning: "2Mo 16–18", evening: "Mt 19,16–30" },
+  { day:29,  morning: "2Mo 19–21", evening: "Mt 20,1–16" },
+  { day:30,  morning: "2Mo 22–24", evening: "Mt 20,17–34" },
+  { day:31,  morning: "2Mo 25–26", evening: "Mt 21,1–22" }
+];
+
+/* ---------------------------------------------------
+   RENDER DAY LIST
+--------------------------------------------------- */
+
+const STORAGE_KEY = "lesenplan-darkluxe";
+const dayListEl = document.getElementById("dayList");
+const progressTextEl = document.getElementById("progressText");
+const progressFillEl = document.getElementById("progressFill");
+
+function getState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  return raw ? JSON.parse(raw) : {};
+}
+
+function setState(s) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+function render() {
+  const state = getState();
+  dayListEl.innerHTML = "";
+  let doneCount = 0;
+
+  // cek apakah hari ini adalah Januar 2026
+const isJan2026 =
+  today.getFullYear() === 2026 && today.getMonth() === 0;
+const todayDay = isJan2026 ? today.getDate() : null;
+
+  plan.forEach(({ day, morning, evening }) => {
+    const done = state[day]?.done ?? false;
+    if (done) doneCount++;
+
+    const card = document.createElement("div");
+    card.className = "day-card";
+
+    // jika hari ini
+    if (todayDay && day === todayDay) {
+      card.classList.add("today");
+      const badge = document.createElement("div");
+      badge.className = "today-badge";
+      badge.textContent = "Heute";
+      card.appendChild(badge);
+    }
+
+    const num = document.createElement("div");
+    num.className = "day-num";
+    num.textContent = day;
+
+    const content = document.createElement("div");
+    content.style.flex = "1";
+
+    const title = document.createElement("div");
+    title.className = "day-title";
+    title.textContent = `Tag ${day}`;
+
+            // Morgens: Text ist direkt klickbar
+    const rowM = document.createElement("div");
+    rowM.className = "day-ref-row";
+
+    const labelM = document.createElement("span");
+    labelM.className = "day-ref-label";
+    labelM.textContent = "Morgens";
+
+    const textM = document.createElement("button");
+    textM.className = "ref-link-text";
+    textM.type = "button";
+    textM.textContent = morning;
+    textM.onclick = () => openBibleReference(morning);
+
+    rowM.appendChild(labelM);
+    rowM.appendChild(textM);
+
+    // Abends: Text ist direkt klickbar
+    const rowE = document.createElement("div");
+    rowE.className = "day-ref-row";
+
+    const labelE = document.createElement("span");
+    labelE.className = "day-ref-label";
+    labelE.textContent = "Abends";
+
+    const textE = document.createElement("button");
+    textE.className = "ref-link-text";
+    textE.type = "button";
+    textE.textContent = evening;
+    textE.onclick = () => openBibleReference(evening);
+
+    rowE.appendChild(labelE);
+    rowE.appendChild(textE);
+
+    content.appendChild(title);
+    content.appendChild(rowM);
+    content.appendChild(rowE);
+
+    const actions = document.createElement("div");
+    actions.style.display = "flex";
+    actions.style.flexDirection = "column";
+    actions.style.gap = "6px";
+
+    // Done-Button
+    const btn = document.createElement("button");
+    btn.className = "btn-small";
+    btn.textContent = done ? "Gelesen" : "Noch offen";
+    if (done) btn.classList.add("is-done");
+
+    btn.onclick = () => {
+      const s = getState();
+      if (s[day]?.done) {
+        delete s[day];
+      } else {
+        s[day] = { done: true, ts: Date.now() };
+      }
+      setState(s);
+      render();
+    };
+
+    // Focus-Button
+    const focusBtn = document.createElement("button");
+    focusBtn.className = "btn-small";
+    focusBtn.textContent = "Im Fokus lesen";
+    focusBtn.onclick = () => openFocus(day, morning, evening);
+
+    // Reset-Link
+    const reset = document.createElement("span");
+    reset.className = "reset-link";
+    reset.textContent = "Zurücksetzen";
+    reset.onclick = () => {
+      const s = getState();
+      delete s[day];
+      setState(s);
+      render();
+    };
+
+    actions.appendChild(btn);
+    actions.appendChild(focusBtn);
+    actions.appendChild(reset);
+
+    card.appendChild(num);
+    card.appendChild(content);
+    card.appendChild(actions);
+
+    dayListEl.appendChild(card);
+  });
+
+  const percent = Math.round((doneCount / plan.length) * 100);
+  progressTextEl.textContent = `${doneCount} von ${plan.length} Tagen abgeschlossen (${percent}%).`;
+  progressFillEl.style.width = percent + "%";
+}
+
+render();
+
+   /* ---------------------------------------------------
+   YOUVERSION AUTO-ROUTING (MOBILE vs DESKTOP)
+--------------------------------------------------- */
+
+// Deteksi device
+function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+// Mapping singkatan di Plan -> Buch-Code YouVersion
+const youvBookMap = {
+  "Hes": "EZK",      // Hesekiel
+  "Dan": "DAN",
+  "Hos": "HOS",
+  "Joël": "JOL",
+  "Joel": "JOL",
+  "Amos": "AMO",
+  "Obadja": "OBA",
+  "Jona": "JON",
+  "Micha": "MIC",
+  "Nahum": "NAH",
+  "Habakuk": "HAB",
+  "Zefanja": "ZEP",
+  "Haggai": "HAG",
+  "Sach": "ZEC",
+  "Maleachi": "MAL",
+
+  "Hebr": "HEB",
+  "Jak":  "JAS",
+  "Judas":"JUD",
+  "Offb": "REV"
+};
+
+// Dari teks seperti "Hes 45–46" -> { bookCode: "EZK", chapter: 45 }
+function parseReference(refText) {
+  if (!refText) return null;
+
+  // Ambil bagian sebelum dan sesudah spasi pertama
+  const parts = refText.split(/\s+/, 2);
+  if (parts.length < 2) return null;
+
+  const bookToken = parts[0];
+  const rest = parts[1];
+
+  const bookCode = youvBookMap[bookToken];
+  if (!bookCode) return null;
+
+  // Cari angka pertama sebagai chapter
+  const match = rest.match(/(\d+)/);
+  if (!match) return null;
+
+  const chapter = match[1];
+  return { bookCode, chapter };
+}
+
+// Buka referensi
+function openBibleReference(refText) {
+  const parsed = parseReference(refText);
+  if (!parsed) {
+    alert("Diese Bibelstelle konnte nicht automatisch erkannt werden.");
+    return;
+  }
+
+  const { bookCode, chapter } = parsed;
+
+  // Lutherbibel 2017 = 51  (kamu bisa ganti ke ID lain kalau mau)
+  const desktopUrl = `https://www.bible.com/bible/51/${bookCode}.${chapter}.DEU`;
+  const mobileUrl  = `youversion://bible?reference=${bookCode}.${chapter}`;
+
+  const finalUrl = isMobile() ? mobileUrl : desktopUrl;
+  window.open(finalUrl, "_blank", "noopener");
+}
+
+/* ---------------------------------------------------
+   FOCUS MODE
+--------------------------------------------------- */
+
+const focusOverlay = document.getElementById("focusOverlay");
+const focusClose = document.getElementById("focusClose");
+const focusDateEl = document.getElementById("focusDate");
+const focusTitleEl = document.getElementById("focusTitle");
+const focusMorningEl = document.getElementById("focusMorning");
+const focusEveningEl = document.getElementById("focusEvening");
+
+function openFocus(day, morning, evening) {
+  focusTitleEl.textContent = `Tag ${day}`;
+  focusMorningEl.textContent = `Morgens: ${morning}`;
+  focusEveningEl.textContent = `Abends: ${evening}`;
+  focusDateEl.textContent = `Januar 2026 – Tag ${day}`;
+
+  focusOverlay.classList.add("is-open");   // ⬅ tampilkan overlay
+  document.body.style.overflow = "hidden"; // ⬅ opsional: kunci scroll belakang
+}
+
+function closeFocus() {
+  focusOverlay.classList.remove("is-open"); // ⬅ sembunyikan overlay
+  document.body.style.overflow = "";        // ⬅ buka lagi scroll
+}
+
+focusClose.onclick = () => {
+  closeFocus();
+};
+
+focusOverlay.addEventListener("click", (e) => {
+  if (e.target === focusOverlay) {
+    closeFocus();
+  }
+});
+
+/* ---------------------------------------------------
+   TAB SWITCHING
+--------------------------------------------------- */
+
+document.querySelectorAll(".nav-tab").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelector(".nav-tab.is-active").classList.remove("is-active");
+    btn.classList.add("is-active");
+
+    document.querySelector(".tab-section.active").classList.remove("active");
+    document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+  };
+});
+
+/* ---------------------------------------------------
+   THEME TOGGLE
+--------------------------------------------------- */
+
+const themeBtn = document.getElementById("theme-toggle");
+
+if (localStorage.getItem("theme") === "light") {
+  document.body.dataset.theme = "light";
+  themeBtn.textContent = "🌙";
+}
+
+themeBtn.onclick = () => {
+  if (document.body.dataset.theme === "light") {
+    document.body.removeAttribute("data-theme");
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "☀";
+  } else {
+    document.body.dataset.theme = "light";
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "🌙";
+  }
+};
+
+/* ---------------------------------------------------
+   JOURNAL SAVE
+--------------------------------------------------- */
+
+/* ---------------------------------------------------
+   JOURNAL PER TAG
+--------------------------------------------------- */
+
+const journalDaySelect = document.getElementById("journal-day");
+const journalText = document.getElementById("journal-text");
+const journalStatus = document.getElementById("journal-status");
+const JOURNAL_KEY = "journal-darkluxe-v2";
+
+let journalStore = {};
+try {
+  const saved = localStorage.getItem(JOURNAL_KEY);
+  journalStore = saved ? JSON.parse(saved) : {};
+} catch {
+  journalStore = {};
+}
+
+// isi dropdown Tag 1–31
+if (journalDaySelect) {
+  plan.forEach(({ day }) => {
+    const opt = document.createElement("option");
+    opt.value = String(day);
+    opt.textContent = `Tag ${day}`;
+    journalDaySelect.appendChild(opt);
+  });
+
+  // pilih default: heute, kalau Des 2025
+  const t = new Date();
+  if (t.getFullYear() === 2025 && t.getMonth() === 11) {
+    const dd = t.getDate();
+    const opt = [...journalDaySelect.options].find(o => Number(o.value) === dd);
+    if (opt) journalDaySelect.value = String(dd);
+  }
+}
+
+function loadJournalForDay(day) {
+  journalText.value = journalStore[day] || "";
+}
+
+if (journalDaySelect) {
+  loadJournalForDay(journalDaySelect.value);
+
+  journalDaySelect.addEventListener("change", () => {
+    loadJournalForDay(journalDaySelect.value);
+    journalStatus.textContent = "";
+  });
+}
+
+document.getElementById("journal-save").onclick = () => {
+  const day = journalDaySelect.value;
+  journalStore[day] = journalText.value || "";
+  localStorage.setItem(JOURNAL_KEY, JSON.stringify(journalStore));
+  journalStatus.textContent = "Gespeichert ✓";
+};
+
+/* ---------------------------------------------------
+   LANGUAGE SWITCHER (DE ⇄ ID)
+--------------------------------------------------- */
+
+const langBtn = document.getElementById("lang-toggle");
+
+// Apakah sedang di versi Indonesia (index-id.html)?
+const isIndo = window.location.pathname.includes("index-id.html");
+
+if (isIndo) {
+  langBtn.textContent = "DE";   // sedang di versi Indonesia
+} else {
+  langBtn.textContent = "ID";   // sedang di versi Jerman
+}
+
+langBtn.onclick = () => {
+  const path = window.location.pathname;
+
+  if (path.includes("index-id.html")) {
+    // kembali ke versi Jerman
+    window.location.href = "index.html";
+  } else {
+    // pergi ke versi Indonesia
+    window.location.href = "index-id.html";
+  }
+};
+
+/* ---------------------------------------------------
+   MUSIC PLAYER + PLAY BUTTON
+--------------------------------------------------- */
+
+const player = document.getElementById("player");
+const musicSelect = document.getElementById("music-select");
+const musicPlayBtn = document.getElementById("music-play");
+
+const musicSources = {
+  ambient: "https://raw.githubusercontent.com/gabriellasapari/bibel-leseplan/main/ambient-worship-music-112199.mp3"
+};
+
+let isPlaying = false;
+
+function setMusicFromSelect(autoPlay = false) {
+  const src = musicSources[musicSelect.value];
+  if (!src) return;
+  player.src = src;
+  if (autoPlay) {
+    player.play().then(() => {
+      isPlaying = true;
+      updatePlayButton();
+    }).catch(() => {
+      // Autoplay blockiert – Nutzer kann manuell auf Play drücken
+      isPlaying = false;
+      updatePlayButton();
+    });
+  }
+}
+
+function updatePlayButton() {
+  musicPlayBtn.textContent = isPlaying ? "⏸" : "▶";
+}
+
+// Klick auf Play / Pause
+musicPlayBtn.addEventListener("click", () => {
+  // Falls noch keine Quelle gesetzt ist
+  if (!player.src) {
+    setMusicFromSelect(false);
+  }
+
+  if (isPlaying) {
+    player.pause();
+    isPlaying = false;
+    updatePlayButton();
+  } else {
+    player.play().then(() => {
+      isPlaying = true;
+      updatePlayButton();
+    }).catch(() => {
+      // wenn Play fehlschlägt, nichts tun
+    });
+  }
+});
+
+// Wenn Track zu Ende ist -> Button zurück auf ▶
+player.addEventListener("ended", () => {
+  isPlaying = false;
+  updatePlayButton();
+});
+
+// Falls du später mehrere Musik-Optionen hast
+musicSelect.addEventListener("change", () => {
+  const shouldPlay = isPlaying;
+  setMusicFromSelect(shouldPlay);
+});
+
+// Initial: Quelle setzen, aber noch nicht abspielen
+setMusicFromSelect(false);
+updatePlayButton();
+
+</script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
+
+</body>
+</html>
